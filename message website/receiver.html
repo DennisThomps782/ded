@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #messageContainer {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            margin: auto;
+        }
+    </style>
+    <title>Message Receiver</title>
+</head>
+<body>
+
+    <h1>Message Receiver</h1>
+
+    <div id="messageContainer"></div>
+
+    <script>
+        // Check for incoming messages in localStorage
+        function checkForMessages() {
+            const message = localStorage.getItem('message');
+
+            if (message) {
+                displayMessage(message);
+
+                // Clear the message from localStorage
+                localStorage.removeItem('message');
+            }
+        }
+
+        // Display received message
+        function displayMessage(message) {
+            const messageContainer = document.getElementById('messageContainer');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageContainer.appendChild(messageElement);
+        }
+
+        // Check for messages periodically
+        setInterval(checkForMessages, 1000);
+    </script>
+
+</body>
+</html>
